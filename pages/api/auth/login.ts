@@ -37,7 +37,9 @@ app.post("*", auth, (req, res, next) => {
       if (e) {
         return next(e);
       }
-      if (req.session) req.session.cookie.maxAge = 1800000;
+      const { no_session } = req.body;
+      if (req.session)
+        req.session.cookie.maxAge = no_session ? 1800000 : 86400000;
 
       const { name, email, admin, programs, type, id, show_dropout } = user;
 

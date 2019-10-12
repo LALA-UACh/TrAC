@@ -10,10 +10,7 @@ import {
 import d3Comp from "./js/d3Dashboard";
 import ScrollContainer from "react-indiana-drag-scroll";
 import "./css/Dashboard.css";
-import {
-  withStudentDataContext,
-  StudentDataContext,
-} from "@Context/StudentData";
+import { StudentDataContext } from "@Context/StudentData";
 
 const D3DashboardReactComponent = () => {
   const { programStructure, studentAcademic, prediction_data } = useContext(

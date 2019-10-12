@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import Track, { setTrackingData } from "@Context/Tracking";
+import { Track, setTrackingData } from "@Utils";
 import _ from "lodash";
 
 var originalConfig = require("../config/dashboard.json");

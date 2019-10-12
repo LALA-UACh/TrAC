@@ -6,8 +6,7 @@ import { toast } from "react-toastify";
 
 import Login from "@Components/Auth/Login";
 import Loader from "@Components/Loader";
-import { setTrackingData, useTrackingData } from "@Context/Tracking";
-import { AuthPath } from "@Utils";
+import { AuthPath, setTrackingData, useTrackingData } from "@Utils";
 
 export type AuthenticatedInfo = {
   email: string;
@@ -22,16 +21,15 @@ export type AuthenticatedInfo = {
 export type login = (data: {
   email: string;
   password: string;
+  no_session?: true;
 }) => Promise<void>;
 export type Context = AuthenticatedInfo & {
   login: login;
-  loginNoSession: login;
   logout: () => Promise<void>;
 };
 
 export const AuthContext = createContext<Context>({
   login: async () => {},
-  loginNoSession: async () => {},
   logout: async () => {
     await axios.post(`${AuthPath}/logout`);
   },
@@ -90,7 +88,7 @@ const Auth: FunctionComponent<{ admin?: boolean }> = ({ children, admin }) => {
     <AuthContext.Provider
       value={{
         ...auth,
-        login: async ({ email, password }) => {
+        login: async ({ email, password, no_session }) => {
           try {
             setLoading(true);
             const resp = await axios.post<AuthenticatedInfo>(
@@ -98,6 +96,7 @@ const Auth: FunctionComponent<{ admin?: boolean }> = ({ children, admin }) => {
               {
                 email,
                 password: sha1(password).toString(),
+                no_session,
               }
             );
             switch (resp.status) {
@@ -127,44 +126,6 @@ const Auth: FunctionComponent<{ admin?: boolean }> = ({ children, admin }) => {
             setLoading(false);
 
             toast.error(error.message);
-          }
-        },
-        loginNoSession: async ({ email, password }) => {
-          try {
-            setLoading(true);
-            const resp = await axios.post<AuthenticatedInfo>(
-              `${AuthPath}/login/no_session`,
-              {
-                email,
-                password: sha1(password).toString(),
-              }
-            );
-            switch (resp.status) {
-              case 200: {
-                setAuth(resp.data);
-                setLoading(false);
-
-                break;
-              }
-              case 210: {
-                toast.error(resp.data);
-                setAuth({
-                  email: "",
-                  name: "",
-                  admin: false,
-                  programs: [],
-                  type: "",
-                  show_dropout: false,
-                  id: "",
-                });
-                setLoading(false);
-
-                break;
-              }
-            }
-          } catch (error) {
-            toast.error(error.message);
-            setLoading(false);
           }
         },
         logout: async () => {

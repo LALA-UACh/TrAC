@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 import { AuthContext } from "@Context/Auth";
 import { StudentDataContext } from "@Context/StudentData";
-import Track, { setTrackingData, useTrackingData } from "@Context/Tracking";
+import { setTrackingData, Track, useTrackingData } from "@Utils";
 
 const Solapa: FunctionComponent<{
   x?: number;

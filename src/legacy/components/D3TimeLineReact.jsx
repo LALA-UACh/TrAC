@@ -3,10 +3,7 @@ import d3Comp from "./js/d3TimeLine";
 import "./css/TimeLine.css";
 import Dropout from "@Components/Dashboard/Dropout";
 import { Flex, Box } from "@rebass/grid";
-import {
-  withStudentDataContext,
-  StudentDataContext,
-} from "@Context/StudentData";
+import { StudentDataContext } from "@Context/StudentData";
 import ScrollContainer from "react-indiana-drag-scroll";
 
 const D3TimeLineReactComponent = () => {

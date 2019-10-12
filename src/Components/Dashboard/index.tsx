@@ -4,7 +4,7 @@ import { FC, useContext } from "react";
 
 import StudentData, { StudentDataContext } from "@Context/StudentData";
 import D3DashboardComponent from "@Legacy/components/D3DashboardReact.jsx";
-import D3Component from "@Legacy/components/D3TimeLineReact.jsx";
+import D3TimeLine from "@Legacy/components/D3TimeLineReact.jsx";
 import Nav from "@Legacy/components/NavComponent.jsx";
 
 const DashboardComponents = () => {
@@ -14,7 +14,7 @@ const DashboardComponents = () => {
     programStructure &&
     studentAcademic && (
       <div>
-        <D3Component />
+        <D3TimeLine />
         <D3DashboardComponent />
       </div>
     )

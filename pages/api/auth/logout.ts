@@ -1,6 +1,7 @@
-import serverApp from "@Server/app";
-import auth from "@Middleware/auth";
 import _ from "lodash";
+
+import auth from "@Middleware/auth";
+import serverApp from "@Server/app";
 
 const app = serverApp();
 
@@ -10,6 +11,7 @@ app.use(auth, (req, res) => {
   }
   req.logout();
   req.session && req.session.destroy(() => {});
+  res.clearCookie("connect.sid");
   if (req.method === "GET") {
     return res.redirect("/");
   }

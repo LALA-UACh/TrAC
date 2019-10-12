@@ -3,17 +3,13 @@ import moment from "moment-timezone";
 import Select from "react-select";
 import _ from "lodash";
 import { Icon, Button } from "semantic-ui-react";
-//ReactGA.initialize('UA-133535891-1'); // Here we should use our GA id
 import "./css/Nav.css";
 import Tippy from "@tippy.js/react";
 import { useRememberState } from "use-remember-state";
-import StudentData, {
-  withStudentDataContext,
-  StudentDataContext,
-} from "@Context/StudentData";
+import StudentData, { StudentDataContext } from "@Context/StudentData";
 import { AuthContext } from "@Context/Auth";
 import Loader from "@Components/Loader";
-import { setTrackingData } from "@Context/Tracking";
+import { setTrackingData } from "@Utils";
 
 const NavComponent = () => {
   const [textInput, setTextInput] = useRememberState("TracNavTextInput", "");
@@ -239,4 +235,4 @@ const NavComponent = () => {
   );
 };
 
-export default withStudentDataContext(NavComponent);
+export default NavComponent;

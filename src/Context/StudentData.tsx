@@ -6,7 +6,7 @@ import useSetState from "react-use/lib/useSetState";
 import { useRememberState } from "use-remember-state";
 
 import { AuthContext } from "@Context/Auth";
-import Track, { setTrackingData, useTrackingData } from "@Context/Tracking";
+import { setTrackingData, Track, useTrackingData } from "@Utils";
 
 const getProgram = (programId: string, year: string) => {
   let URL = `/api/dashboard/programs/get_program?id=${programId}&year=${year}`;
@@ -66,17 +66,6 @@ export const StudentDataContext = createContext<StudentDataInterface>({
   handleLogout: () => {},
   handleChangeCombo: () => {},
 });
-export const withStudentDataContext = (Component: any) => {
-  return (props: any) => {
-    return (
-      <StudentDataContext.Consumer>
-        {context => {
-          return <Component {...props} context={context} />;
-        }}
-      </StudentDataContext.Consumer>
-    );
-  };
-};
 
 const StudentData: FunctionComponent = ({ children }) => {
   const { programs, name, type } = useContext(AuthContext);

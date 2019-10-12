@@ -1,0 +1,23 @@
+.inherit-display {
+  display: inherit;
+}
+
+.comboPrograms {
+  width: 25rem;
+}
+.helpImage {
+  /* margin-right: 10em; */
+  width: 442px;
+  height: 366px;
+}
+
+.infoButton {
+  cursor: pointer;
+  margin-right: 1em;
+}
+
+.btn:focus,
+.btn:active {
+  outline: none !important;
+  box-shadow: none;
+}

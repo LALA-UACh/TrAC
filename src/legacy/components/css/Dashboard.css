@@ -1,0 +1,12 @@
+.tooltipSituation {
+  position: absolute;
+  text-align: center;
+  margin-left: 10px;
+  margin-top: 3px;
+  padding: 2px;
+  color: black;
+  background: #e0dbdb;
+  border: 0px;
+  border-radius: 4px;
+  pointer-events: none;
+}

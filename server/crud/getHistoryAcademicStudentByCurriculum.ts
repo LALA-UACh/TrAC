@@ -1,15 +1,8 @@
 import { Sequelize } from "sequelize";
+
 import {
-  GroupCourseAcademic,
-  GroupCourseByTerm,
-  Course,
-  StudentStatisticByTerm,
-  History,
-  // GroupCourseAcademicModel,
-  GroupCourseByTermModel,
-  CourseModel,
-  StudentStatisticByTermModel,
-  HistoryModel,
+    Course, CourseModel, GroupCourseAcademic, GroupCourseByTerm, GroupCourseByTermModel, History,
+    HistoryModel, StudentStatisticByTerm, StudentStatisticByTermModel
 } from "@Models/api";
 
 export type HistoryAcademicMixin = HistoryModel &
@@ -23,7 +16,7 @@ export type HistoryAcademicMixin = HistoryModel &
 
 export default async (
   curriculumId: number,
-  studentId: number,
+  studentId: string,
   _cohortYear: number
 ) => {
   //Cohort year for the statistics cohort

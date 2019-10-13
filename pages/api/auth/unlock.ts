@@ -2,9 +2,9 @@ import sha1 from "crypto-js/sha1";
 import _ from "lodash";
 import isHash from "validator/lib/isHash";
 
+import serverApp from "@AppServer";
 import auth from "@Middleware/auth";
 import { Users } from "@Models/auth";
-import serverApp from "@Server/app";
 import validation from "@Services/validation";
 
 const app = serverApp();

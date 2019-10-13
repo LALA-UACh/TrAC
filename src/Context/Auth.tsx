@@ -1,6 +1,5 @@
 import axios from "axios";
 import sha1 from "crypto-js/sha1";
-import { get as getCookie } from "js-cookie";
 import { createContext, FunctionComponent, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -59,24 +58,22 @@ const Auth: FunctionComponent<{ admin?: boolean }> = ({ children, admin }) => {
   });
   useEffect(() => {
     (async () => {
-      if (getCookie("connect.sid")) {
-        try {
-          const resp = await axios.post<AuthenticatedInfo>(
-            `${AuthPath}/current_user`
-          );
-          setLoading(false);
+      try {
+        const resp = await axios.post<AuthenticatedInfo>(
+          `${AuthPath}/current_user`
+        );
+        setLoading(false);
 
-          switch (resp.status) {
-            case 200: {
-              setTrackingData("user_id", resp.data.email);
-              setAuth(resp.data);
+        switch (resp.status) {
+          case 200: {
+            setTrackingData("user_id", resp.data.email);
+            setAuth(resp.data);
 
-              break;
-            }
+            break;
           }
-        } catch (err) {
-          toast.error(err.message);
         }
+      } catch (err) {
+        toast.error(err.message);
       }
       setLoading(false);
     })();

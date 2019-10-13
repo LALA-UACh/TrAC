@@ -3,6 +3,7 @@ import { RequestHandler } from "express";
 import { check, sanitize, validationResult } from "express-validator";
 import _ from "lodash";
 
+import serverApp from "@AppServer";
 import getHistoryAcademicStudentByCurriculum, {
     HistoryAcademicMixin
 } from "@CRUD/getHistoryAcademicStudentByCurriculum";
@@ -10,7 +11,7 @@ import getLoadingDate from "@CRUD/getLoadingDate";
 import getProgramStudent from "@CRUD/getProgramStudent";
 import getStudentsAcademics, { StudentMixin } from "@CRUD/getStudentsAcademics";
 import { requireAuth } from "@Middleware/auth";
-import serverApp from "@Server/app";
+import { StudentCurriculum } from "@Models/api";
 import { getAnonymousId } from "@ServerUtils";
 
 const app = serverApp();
@@ -178,17 +179,43 @@ app.use(
     } else {
       const processRequest = async () => {
         try {
-          let student = req.query.id;
+          let student: string = req.query.id;
+          let program: number = req.query.program;
 
-          const anonimizado = await getAnonymousId(student);
+          if (process.env.NODE_ENV !== "production") {
+            if (student.toLowerCase() === "random") {
+              const allStudents: {
+                student_id: string;
+                curriculum_id: number;
+              }[] = await StudentCurriculum.findAll({
+                attributes: ["student_id", "curriculum_id"],
+              });
+              const sampleStudent = _.sample(
+                _.filter(
+                  allStudents,
+                  ({ curriculum_id }) =>
+                    _.toString(curriculum_id).slice(0, 4) ===
+                    _.toString(program)
+                )
+              );
+              if (sampleStudent) {
+                const { student_id, curriculum_id } = sampleStudent;
+                student = student_id;
+                program = _.toInteger(_.toString(curriculum_id).slice(0, 4));
+                console.log("randomStudent:", { student_id, curriculum_id });
+              }
+            }
+          } else {
+            const anonimizado = await getAnonymousId(student);
 
-          if (anonimizado) {
-            student = anonimizado;
+            if (anonimizado) {
+              student = anonimizado;
+            }
           }
 
           // Get the curriculum and the program object
 
-          const data = await getStudentsAcademics(student, req.query.program);
+          const data = await getStudentsAcademics(student, program);
 
           // If the data is not found
           if (!data)

@@ -1,12 +1,12 @@
 import dotenv from "dotenv";
-import app from "express";
+import express from "express";
 
 import common from "@Middleware/common";
 
 if (process.env.NODE_ENV !== "production") dotenv.config();
 
 const serverApp = () => {
-  const serverApp = app();
+  const serverApp = express();
 
   serverApp.use(common);
 

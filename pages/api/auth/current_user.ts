@@ -1,6 +1,7 @@
-import serverApp from "@Server/app";
-import auth from "@Middleware/auth";
 import _ from "lodash";
+
+import serverApp from "@AppServer";
+import auth from "@Middleware/auth";
 
 const app = serverApp();
 

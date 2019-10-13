@@ -1,6 +1,7 @@
-import { Users } from "@Models/auth";
-import serverApp from "@Server/app";
+import serverApp from "@AppServer";
 import { requireAdmin } from "@Middleware/auth";
+import { Users } from "@Models/auth";
+
 const app = serverApp();
 
 app.post("*", requireAdmin, async (req, res) => {

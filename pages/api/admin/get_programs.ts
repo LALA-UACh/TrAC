@@ -1,4 +1,4 @@
-import serverApp from "@Server/app";
+import serverApp from "@AppServer";
 import { requireAdmin } from "@Middleware/auth";
 import { UserProgram } from "@Models/auth";
 

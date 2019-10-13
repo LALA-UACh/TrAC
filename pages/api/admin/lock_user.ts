@@ -1,8 +1,9 @@
-import serverApp from "@Server/app";
+import randomString from "randomstring";
+
+import serverApp from "@AppServer";
 import { requireAdmin } from "@Middleware/auth";
 import { Users } from "@Models/auth";
 import { sendMail } from "@Services/mail";
-import randomString from "randomstring";
 import Mail from "@Services/mail/mail";
 import validation from "@Services/validation";
 

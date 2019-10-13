@@ -1,7 +1,7 @@
 import _ from "lodash";
 
+import serverApp from "@AppServer";
 import auth from "@Middleware/auth";
-import serverApp from "@Server/app";
 
 const app = serverApp();
 

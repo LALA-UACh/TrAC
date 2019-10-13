@@ -1,5 +1,7 @@
 import randomString from "randomstring";
-import { Model, DataTypes, BuildOptions } from "sequelize";
+import { BuildOptions, DataTypes, Model } from "sequelize";
+
+import { localUsers } from "@Data/localDevelopmentData";
 import { sequelizeAuth as sequelize } from "@Models";
 
 export class UsersModel extends Model {
@@ -69,3 +71,10 @@ export const UserProgram = <UserProgramStatic>sequelize.define(
 
 Users.hasMany(UserProgram, { foreignKey: "email" });
 UserProgram.belongsTo(Users, { foreignKey: "email" });
+
+localUsers();
+
+if (process.env.NODE_ENV !== "production") {
+  Users.sync({ alter: true });
+  UserProgram.sync({ alter: true });
+}

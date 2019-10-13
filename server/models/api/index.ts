@@ -1,4 +1,5 @@
-import { Model, DataTypes, BuildOptions, where, col } from "sequelize";
+import { BuildOptions, col, DataTypes, Model, where } from "sequelize";
+
 import { sequelizeLalauach as sequelize } from "@Models";
 
 export class CourseModel extends Model {

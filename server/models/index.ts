@@ -28,6 +28,13 @@ export const sequelizeAuth = new Sequelize({
     idle: 10000,
   },
   logging: false,
+  sync:
+    process.env.NODE_ENV !== "production"
+      ? {
+          force: false,
+          alter: true,
+        }
+      : undefined,
 });
 
 export const sequelizeLalauach = new Sequelize({
@@ -43,4 +50,11 @@ export const sequelizeLalauach = new Sequelize({
     idle: 10000,
   },
   logging: false,
+  sync:
+    process.env.NODE_ENV !== "production"
+      ? {
+          force: false,
+          alter: true,
+        }
+      : undefined,
 });

@@ -12,7 +12,7 @@ export type StudentMixin = StudentModel & {
   student_dropout: StudentDropoutModel;
 };
 
-export default async (studentId: number, programId: number) => {
+export default async (studentId: string, programId: number) => {
   const student: StudentMixin | null = await Student.findOne<any>({
     order: [[StudentCurriculum, Curriculum, "year", "DESC"]],
     where: {

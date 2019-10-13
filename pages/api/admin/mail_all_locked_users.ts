@@ -1,13 +1,12 @@
-import serverApp from "@Server/app";
-import { requireAdmin } from "@Middleware/auth";
-import { Users } from "@Models/auth";
+import stringify from "json-stringify-safe";
 import _ from "lodash";
 import randomString from "randomstring";
-import stringify from "json-stringify-safe";
 
-import Mail from "@Services/mail/mail";
-
+import serverApp from "@AppServer";
+import { requireAdmin } from "@Middleware/auth";
+import { Users } from "@Models/auth";
 import { sendMail } from "@Services/mail";
+import Mail from "@Services/mail/mail";
 
 const app = serverApp();
 

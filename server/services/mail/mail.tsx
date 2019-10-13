@@ -2,7 +2,7 @@ import { FC } from "react";
 import { renderToString } from "react-dom/server";
 import requireEnv from "require-env-variable";
 
-const { GMAIL_USERNAME } = requireEnv(["GMAIL_USERNAME"]);
+const GMAIL_USERNAME = process.env.GMAIL_USERNAME;
 
 const DOMAIN =
   process.env.NODE_ENV === "production"
@@ -14,6 +14,10 @@ const Mail: FC<{ email: string; unlockKey: string }> = ({
   unlockKey,
 }) => {
   const link = `${DOMAIN}/unlock/${email}/${unlockKey}`;
+  if (!GMAIL_USERNAME) {
+    throw new Error("Put the environment variable GMAIL_USERNAME");
+  }
+
   return (
     <div>
       <h2>Bienvenido/a a la herramienta TrAC!</h2>

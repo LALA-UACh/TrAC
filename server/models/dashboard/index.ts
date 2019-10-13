@@ -1,4 +1,5 @@
-import { DataTypes, Model, BuildOptions } from "sequelize";
+import { BuildOptions, DataTypes, Model } from "sequelize";
+
 import { sequelizeLalauach as sequelize } from "@Models";
 
 export class TrackingModel extends Model {
@@ -50,3 +51,5 @@ export const Tracking = <TrackingStatic>sequelize.define(
     timestamps: false,
   }
 );
+
+if (process.env.NODE_ENV !== "production") Tracking.sync({ alter: true });

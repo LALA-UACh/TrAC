@@ -1,5 +1,6 @@
 import stringify from "json-stringify-safe";
-import serverApp from "@Server/app";
+
+import serverApp from "@AppServer";
 import { requireAdmin } from "@Middleware/auth";
 import { UserProgram } from "@Models/auth";
 import validation from "@Services/validation";

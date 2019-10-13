@@ -2,12 +2,12 @@ import { RequestHandler } from "express";
 import { check, validationResult } from "express-validator";
 import _ from "lodash";
 
+import serverApp from "@AppServer";
 import getLoadingDate from "@CRUD/getLoadingDate";
 import getProgram, { ProgramsMixin } from "@CRUD/getProgram";
 import getProgramStudent from "@CRUD/getProgramStudent";
 import getProgramTerms, { ProgramTermsMixin } from "@CRUD/getProgramTerms";
 import { requireAuth } from "@Middleware/auth";
-import serverApp from "@Server/app";
 
 const app = serverApp();
 

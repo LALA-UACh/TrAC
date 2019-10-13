@@ -1,12 +1,12 @@
-import express from "express";
 import moment from "moment-timezone";
 
+import serverApp from "@AppServer";
 import { requireAuth } from "@Middleware/auth";
 import { Tracking } from "@Models/dashboard";
 import { getAnonymousId } from "@ServerUtils";
 import validation from "@Services/validation";
 
-const app = express();
+const app = serverApp();
 
 app.post(
   "*",
@@ -38,7 +38,7 @@ app.post(
       datetime: string;
     } = req.body;
 
-    await (async () => {
+    if (process.env.NODE_ENV === "production") {
       const pattern = /(.*student=)(?<rut>.*)(,showing-progress=.*)/;
       const match = data.match(pattern);
       if (match && match.groups && match.groups.rut) {
@@ -49,7 +49,7 @@ app.post(
           });
         }
       }
-    })();
+    }
 
     await Tracking.create({
       app_id,

@@ -1,7 +1,8 @@
 import stringify from "json-stringify-safe";
-import { Users } from "@Models/auth";
-import serverApp from "@Server/app";
+
+import serverApp from "@AppServer";
 import { requireAdmin } from "@Middleware/auth";
+import { Users } from "@Models/auth";
 import validation from "@Services/validation";
 
 const app = serverApp();

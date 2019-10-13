@@ -1,7 +1,7 @@
-import { validation } from "@Services/validation";
-import serverApp from "@Server/app";
+import serverApp from "@AppServer";
 import { requireAdmin } from "@Middleware/auth";
 import { Users } from "@Models/auth";
+import { validation } from "@Services/validation";
 
 const app = serverApp();
 

@@ -72,9 +72,10 @@ export const UserProgram = <UserProgramStatic>sequelize.define(
 Users.hasMany(UserProgram, { foreignKey: "email" });
 UserProgram.belongsTo(Users, { foreignKey: "email" });
 
-localUsers();
-
 if (process.env.NODE_ENV !== "production") {
-  Users.sync({ alter: true });
-  UserProgram.sync({ alter: true });
+  (async () => {
+    await Users.sync({ alter: true });
+    await UserProgram.sync({ alter: true });
+    localUsers();
+  })();
 }

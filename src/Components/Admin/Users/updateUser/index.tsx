@@ -1,5 +1,6 @@
 import { cloneElement, FunctionComponent, useContext, useEffect, useState } from "react";
 import { Field, Form } from "react-final-form";
+import { Box, Flex } from "reflexbox";
 import {
     Button, Checkbox, Form as FormSemantic, Grid, Icon, Input, Modal
 } from "semantic-ui-react";
@@ -7,7 +8,6 @@ import { useRememberState } from "use-remember-state";
 
 import { AdminContext, IUser } from "@Components/Admin/Context";
 import Confirm from "@Components/Confirm";
-import { Box, Flex } from "@rebass/grid";
 
 const UpdateUser: FunctionComponent<{
   user: IUser;

@@ -61,7 +61,7 @@ app.post(
       }
 
       console.log(
-        `Usuarios ${stringify(data)} upsertados por ${req.user.email}`
+        `Usuarios ${stringify(data)} upsertados por ${req.user?.email}`
       );
 
       const users = await Users.findAll({

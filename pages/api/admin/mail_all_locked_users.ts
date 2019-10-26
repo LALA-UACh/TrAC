@@ -35,7 +35,7 @@ app.post("*", requireAdmin, async (req, res) => {
 
         console.log(
           `Correo de activación enviado desde panel a ${stringify(user)} por ${
-            req.user.email
+            req.user?.email
           }`
         );
       } catch (err) {

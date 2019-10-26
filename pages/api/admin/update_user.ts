@@ -63,7 +63,7 @@ app.post(
       );
 
       console.log(
-        `Usuario  ${stringify(req.body)} modificado por ${req.user.email}`
+        `Usuario  ${stringify(req.body)} modificado por ${req.user?.email}`
       );
 
       const users = await Users.findAll({

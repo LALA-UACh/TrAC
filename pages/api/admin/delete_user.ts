@@ -23,7 +23,7 @@ app.post(
       });
 
       console.log(
-        `Usuario ${email} eliminado desde panel por ${req.user.email}`
+        `Usuario ${email} eliminado desde panel por ${req.user?.email}`
       );
 
       const users = await Users.findAll({

@@ -39,7 +39,7 @@ app.post(
       });
 
       console.log(
-        `Usuario ${email} bloqueado desde panel por ${req.user.email}`
+        `Usuario ${email} bloqueado desde panel por ${req.user?.email}`
       );
 
       const users = await Users.findAll({

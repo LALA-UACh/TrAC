@@ -29,7 +29,7 @@ app.post(
       await UserProgram.bulkCreate(data);
 
       console.log(
-        `Programas ${stringify(data)} insertados por ${req.user.email}`
+        `Programas ${stringify(data)} insertados por ${req.user?.email}`
       );
       const usersPrograms = await UserProgram.findAll({
         raw: true,

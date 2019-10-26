@@ -6,7 +6,7 @@ const app = serverApp();
 
 app.post("*", requireAdmin, async (req, res) => {
   try {
-    console.log(`Admin ${req.user.email} requested programs`);
+    console.log(`Admin ${req.user?.email} requested programs`);
     const users = await UserProgram.findAll({
       raw: true,
       attributes: ["email", "program"],

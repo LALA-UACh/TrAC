@@ -37,7 +37,7 @@ app.post(
       );
 
       console.log(
-        `Programa ${old.email}-${old.program} modificado a ${email}-${program} por ${req.user.email}`
+        `Programa ${old.email}-${old.program} modificado a ${email}-${program} por ${req.user?.email}`
       );
 
       const usersPrograms = await UserProgram.findAll({

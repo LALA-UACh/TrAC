@@ -27,7 +27,7 @@ app.post(
       });
 
       console.log(
-        `Usuario-Programa eliminado desde panel: ${email}-${program} por ${req.user.email}`
+        `Usuario-Programa eliminado desde panel: ${email}-${program} por ${req.user?.email}`
       );
 
       const usersPrograms = await UserProgram.findAll({

@@ -134,6 +134,21 @@ passport.use(
     }
   )
 );
+
+declare global {
+  namespace Express {
+    interface User {
+      email: string;
+      name: string;
+      admin: boolean;
+      programs: { name: string; program: string }[];
+      type: string;
+      id: string;
+      show_dropout: boolean;
+    }
+  }
+}
+
 passport.serializeUser<
   {
     email: string;
